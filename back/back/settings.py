@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "django_celery_beat",
     "django_celery_results",
-    # "news",
+    "insta",
 ]
 
 SIMPLE_JWT = {
@@ -191,4 +191,4 @@ CELERY_TIMEZONE = "UTC"
 # this allows you to schedule items in the Django admin.
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers.DatabaseScheduler"
 # print(">>>>>>>>>>" + CELERY_BROKER_URL)
-CELERY_IMPORTS = ("tasks.test", "tasks.news.news")
+# CELERY_IMPORTS = ("tasks.test", "tasks.news.news")
