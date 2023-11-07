@@ -62,6 +62,8 @@ async def api_delete(url, params=None, data=None):
                 )
 
 
+# while not await test_api(config.insta_api_path + INSTA_API_CHECK_PATH, log_pid):
+#         await asyncio.sleep(2)
 async def test_api(service: str, log_pid: str):
     response = None
     try:

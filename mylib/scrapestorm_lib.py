@@ -36,6 +36,8 @@ async def get_scrapestorm_json(api_path: str, api_params: dict = {}) -> dict:
                 )
 
 
+#  while not await test_scrapestorm("scrapestorm.net", log_pid):
+#         await asyncio.sleep(2)
 async def test_scrapestorm(service: str, log_pid: str):
     response = None
     try:
