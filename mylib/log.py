@@ -28,6 +28,10 @@ log.setLevel(logging.INFO)
 # console_handler.setFormatter(formatter)
 
 
+def log_service_is_not_ready(service: str, log_pid: str):
+    log.warning(log_pid + f"test_services: " + service + " is not ready")
+
+
 def d(i: int) -> None:
     """debug"""
     log.info("***" + str(i) + "***")

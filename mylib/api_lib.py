@@ -1,7 +1,7 @@
 import asyncio
 import aiohttp
-from .config import config
-from .log import log, d
+from config import config
+from log import log, d, log_service_is_not_ready
 
 
 async def api_get(url, params=None, data=None, token=None):
@@ -60,3 +60,16 @@ async def api_delete(url, params=None, data=None):
                     # f"Unexpected Content-Type: {response.headers.get('Content-Type')}"
                     f"Unexpected Content-Type: {response}"
                 )
+
+
+async def test_api(service: str, log_pid: str):
+    response = None
+    try:
+        response = await api_get(url=service)
+        # print(f"{response}")
+        if response and type(response) == list and response[0]["api_status"] == "ok":
+            return True
+    except Exception as exception:
+        log_service_is_not_ready(service, log_pid)
+        # print(f"{exception}")
+    return False

@@ -17,10 +17,21 @@ response = requests.get(
 )
 print(response.text)
 
-params = {"token": config.scrapestorm_api_key, "username": "metallica"}
+# params = {"token": config.scrapestorm_api_key, "username": "metallica"}
+# print(params)
+# response = requests.get(
+#     config.scrapestorm_api_user_profile,
+#     params=params,
+#     headers=headers,
+#     timeout=config.scrapestorm_timeout_int,
+# )
+
+# print(response.text)
+
+params = {"token": config.scrapestorm_api_key, "media_id": "3080504757853342838"}
 print(params)
 response = requests.get(
-    config.scrapestorm_api_user_profile,
+    config.scrapestorm_api_media_info,
     params=params,
     headers=headers,
     timeout=config.scrapestorm_timeout_int,

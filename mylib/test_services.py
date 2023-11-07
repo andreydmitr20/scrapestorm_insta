@@ -36,19 +36,19 @@ def log_service_is_not_ready(service: str, log_pid: str):
 #     return True
 
 
-async def test_selenium(service: str, log_pid: str):
-    driver = None
-    try:
-        driver = await selenium_connect()
-        if driver is None:
-            log_service_is_not_ready(service, log_pid)
-            return False
-    except Exception as exception:
-        log_service_is_not_ready(service, log_pid)
-        return False
-    finally:
-        await selenium_disconnect(driver)
-    return True
+# async def test_selenium(service: str, log_pid: str):
+#     driver = None
+#     try:
+#         driver = await selenium_connect()
+#         if driver is None:
+#             log_service_is_not_ready(service, log_pid)
+#             return False
+#     except Exception as exception:
+#         log_service_is_not_ready(service, log_pid)
+#         return False
+#     finally:
+#         await selenium_disconnect(driver)
+#     return True
 
 
 # async def test_rabbitmq(service: str,log_pid:str):
@@ -67,18 +67,18 @@ async def test_selenium(service: str, log_pid: str):
 #     return True
 
 
-async def test_redis(service: str, log_pid: str):
-    redis_connection = None
-    try:
-        redis_connection = await redis_connect()
-        answer = await redis_connection.ping()
-    except Exception as exception:
-        log_service_is_not_ready(service, log_pid)
-        # save_to_server_log(f"{exception}")
-        return False
-    finally:
-        await redis_disconnect(redis_connection)
-    return True
+# async def test_redis(service: str, log_pid: str):
+#     redis_connection = None
+#     try:
+#         redis_connection = await redis_connect()
+#         answer = await redis_connection.ping()
+#     except Exception as exception:
+#         log_service_is_not_ready(service, log_pid)
+#         # save_to_server_log(f"{exception}")
+#         return False
+#     finally:
+#         await redis_disconnect(redis_connection)
+#     return True
 
 
 async def test_api(service: str, log_pid: str):
