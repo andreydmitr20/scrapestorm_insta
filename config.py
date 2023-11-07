@@ -10,36 +10,19 @@ load_dotenv()
 class config:
     """common config constants"""
 
-    scrapestorm_api: str = os.getenv("scrapestorm_api")
+    scrapestorm_api_key: str = os.getenv("scrapestorm_api_key")
+    scrapestorm_api_user_profile: str = os.getenv("scrapestorm_api_user_profile")
+    scrapestorm_api_media_info: str = os.getenv("scrapestorm_api_media_info")
+    scrapestorm_timeout_int: int = int(os.getenv("scrapestorm_timeout"))
 
-    # sender_email: str = os.getenv("sender_email")
-    # sender_email_pass: str = os.getenv("sender_email_pass")
+    insta_api_path: str = os.getenv("insta_api_path")
 
-    # send_sms: str = os.getenv("send_sms")
-    # twilio_sid: str = os.getenv("twilio_sid")
-    # twilio_token: str = os.getenv("twilio_token")
-    # from_phone: str = os.getenv("from_phone")
+    db_proto: str = os.getenv("db_proto")
+    db_user: str = os.getenv("db_user")
+    db_pass: str = os.getenv("db_pass")
+    db_host: str = os.getenv("db_host")
+    db_name: str = os.getenv("db_name")
+    db_port: str = os.getenv("db_port")
 
-    # timezone: str = os.getenv("timezone")
-
-    # news_api_path: str = os.getenv("news_api_path")
-    # news_api_user: str = os.getenv("news_api_user")
-    # news_api_pass: str = os.getenv("news_api_pass")
-
-    # openai_api_key: str = os.getenv("openai_api_key")
-    # webflow_api_token: str = os.getenv("webflow_api_token")
-
-    # selenium_host = os.getenv("selenium_host")
-    # selenium_prefix = os.getenv("selenium_prefix")
-    # selenium_port = os.getenv("selenium_port")
-    # selenium_postfix = os.getenv("selenium_postfix")
-
-    # db_proto: str = os.getenv("db_proto")
-    # db_user: str = os.getenv("db_user")
-    # db_pass: str = os.getenv("db_pass")
-    # db_host: str = os.getenv("db_host")
-    # db_name: str = os.getenv("db_name")
-    # db_port: str = os.getenv("db_port")
-
-    # redis_host = os.getenv("redis_host")
-    # redis_port = os.getenv("redis_port")
+    redis_host = os.getenv("redis_host")
+    redis_port = os.getenv("redis_port")
