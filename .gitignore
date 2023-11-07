@@ -1,0 +1,11 @@
+.env
+.pass
+/.vscode
+/venv
+/docs
+test_data.csv
+db.sqlite3
+**/__pycache__
+/old
+/d/b
+logs.txt
