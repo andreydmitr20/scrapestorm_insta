@@ -2,6 +2,7 @@
 .pass
 /.vscode
 /venv
+**/renv
 /docs
 test_data.csv
 db.sqlite3
