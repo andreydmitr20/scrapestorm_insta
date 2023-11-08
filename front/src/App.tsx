@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="flex flex-col  justify-center items-center">
+    <div className="flex flex-col justify-center items-center mx-1">
       <Dashboard />
     </div>
   );
