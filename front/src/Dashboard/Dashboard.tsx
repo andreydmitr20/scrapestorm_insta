@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, TextInput } from "@tremor/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+import { get_str } from "../functions/utils";
+
 const REACT_APP_SCRAPESTORM_API_KEY = process.env.REACT_APP_SCRAPESTORM_API_KEY;
 const REACT_APP_SCRAPESTORM_API_USER =
   process.env.REACT_APP_SCRAPESTORM_API_USER;
@@ -19,12 +21,7 @@ const Dashboard = () => {
 
     return result;
   };
-  const get_str = (input: any): string => {
-    if (typeof input === "string") {
-      return input;
-    }
-    return "";
-  };
+
   useEffect(() => {
     if (instaName !== "") {
       console.log("api:" + REACT_APP_SCRAPESTORM_API_USER);
