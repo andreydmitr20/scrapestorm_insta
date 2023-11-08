@@ -54,7 +54,7 @@ module.exports = {
           background: {
             muted: "#131A2B", // custom
             subtle: "#1f2937", // gray-800
-            DEFAULT: "#111827", // gray-900
+            DEFAULT: "#313847", //
             emphasis: "#d1d5db", // gray-300
           },
           border: {

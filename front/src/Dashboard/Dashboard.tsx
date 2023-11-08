@@ -1,23 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { Button, TextInput } from "@tremor/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+const REACT_APP_SCRAPESTORM_API_KEY = process.env.REACT_APP_SCRAPESTORM_API_KEY;
+const REACT_APP_SCRAPESTORM_API_USER =
+  process.env.REACT_APP_SCRAPESTORM_API_USER;
+const REACT_APP_SCRAPESTORM_API_MEDIA =
+  process.env.REACT_APP_SCRAPESTORM_API_MEDIA;
+const REACT_APP_SCRAPESTORM_API_TIMEOUT =
+  process.env.REACT_APP_SCRAPESTORM_API_TIMEOUT;
+const SESSION_STORAGE_USER_PREFIX = "insta_user_";
 
 const Dashboard = () => {
   const [searchText, setSearchText] = useState<string>("");
+  const [instaName, setInstaName] = useState<string>("");
 
+  const api_get = (): object => {
+    let result: object = {};
+
+    return result;
+  };
+  const get_str = (input: any): string => {
+    if (typeof input === "string") {
+      return input;
+    }
+    return "";
+  };
   useEffect(() => {
+    if (instaName !== "") {
+      console.log("api:" + REACT_APP_SCRAPESTORM_API_USER);
+
+      let result: object;
+
+      const storageLabel = SESSION_STORAGE_USER_PREFIX + instaName;
+      let data: string = get_str(sessionStorage.getItem(storageLabel));
+
+      if (data === "") {
+        result = api_get();
+        sessionStorage.setItem(storageLabel, JSON.stringify(result));
+        console.log("saved");
+      } else {
+        result = JSON.parse(data);
+        console.log("loaded");
+      }
+      console.log(result);
+    }
     return () => {
       // Perform any clean-up or unsubscribe actions here
-      console.log("Clean-up");
     };
-  }, [searchText]);
+  }, [instaName]);
 
   const handleSearch = () => {
-    console.log("search: " + searchText);
+    // console.log("search: " + searchText);
+    setInstaName(searchText);
   };
 
   const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchText(e.target.value);
   };
 
