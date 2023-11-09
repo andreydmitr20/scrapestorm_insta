@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, TextInput } from "@tremor/react";
+import { Button, TextInput, AreaChart } from "@tremor/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { get_str } from "../functions/utils";
 
@@ -10,6 +10,7 @@ const REACT_APP_SCRAPESTORM_API_MEDIA =
   process.env.REACT_APP_SCRAPESTORM_API_MEDIA;
 const REACT_APP_SCRAPESTORM_API_TIMEOUT =
   process.env.REACT_APP_SCRAPESTORM_API_TIMEOUT;
+
 const SESSION_STORAGE_USER_PREFIX = "insta_user_";
 
 const Dashboard = () => {
@@ -18,8 +19,57 @@ const Dashboard = () => {
 
   const api_get = (): object => {
     let result: object = {};
+    let apiKey: string = REACT_APP_SCRAPESTORM_API_KEY
+      ? REACT_APP_SCRAPESTORM_API_KEY
+      : "";
+    console.log(apiKey);
+    let timeout: number = REACT_APP_SCRAPESTORM_API_TIMEOUT
+      ? parseInt(REACT_APP_SCRAPESTORM_API_TIMEOUT) * 1000
+      : 60000;
+    console.log(timeout);
+    const params: Record<string, string> = {
+      token: apiKey,
+      username: instaName,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
 
-    return result;
+    const queryString = new URLSearchParams(params).toString();
+    const fullUrl = `${REACT_APP_SCRAPESTORM_API_USER}?${queryString}`;
+
+    const fetchOptions = {
+      method: "GET",
+      headers: headers,
+    };
+
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, timeout);
+
+    fetch(fullUrl, { ...fetchOptions, signal })
+      .then((response) => {
+        clearTimeout(timeoutId);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return result;
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.error("Request timed out");
+        } else {
+          console.error("Error:", error);
+        }
+      });
+    return {};
   };
 
   useEffect(() => {
